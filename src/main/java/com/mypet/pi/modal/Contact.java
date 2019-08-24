@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Contact {
 
@@ -15,6 +17,10 @@ public class Contact {
 	private String name;
 	private int age;
 	private String breed;
+	
+	@Column(name="description")
+	@Type(type="text")
+	private String description;
 	
 	@Column(name = "url_image")
 	private String urlImage;
@@ -50,5 +56,23 @@ public class Contact {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 
 }

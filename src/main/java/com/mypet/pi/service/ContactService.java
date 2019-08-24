@@ -18,4 +18,8 @@ public class ContactService {
 
 		return this.contactRepository.findAll();
 	}
+	
+	public Contact getContactBy(Long id) {
+		return this.contactRepository.findById(id).get();
+	}
 }
