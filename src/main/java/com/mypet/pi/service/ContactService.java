@@ -22,4 +22,10 @@ public class ContactService {
 	public Contact getContactBy(Long id) {
 		return this.contactRepository.findById(id).get();
 	}
+	
+	public void create(Contact contact) {
+		
+		this.contactRepository.save(contact);
+	}
+	
 }
