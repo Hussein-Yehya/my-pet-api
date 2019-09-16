@@ -28,4 +28,9 @@ public class ContactService {
 		this.contactRepository.save(contact);
 	}
 	
+	public void delete(Long id) {
+		 this.contactRepository.deleteById(id);
+	}
+	
+	
 }
