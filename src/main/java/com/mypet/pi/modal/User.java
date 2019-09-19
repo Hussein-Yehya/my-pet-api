@@ -23,7 +23,6 @@ public class User {
 
 	@Column(name="password")
 	private String password;
-
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +59,14 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
+	
+	public User(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
+	
 
 	
 }
