@@ -3,6 +3,8 @@ package com.mypet.pi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +22,8 @@ import com.mypet.pi.service.UserService;
 @RequestMapping("api/users")
 @CrossOrigin("*")
 public class UserController {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private UserService userSerivce;
@@ -27,6 +31,8 @@ public class UserController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping
 	public ResponseEntity create(@RequestBody User user) {
+		
+		logger.info("User {}", user.toString());
 
 		this.userSerivce.create(user);
 
