@@ -1,5 +1,6 @@
 package com.mypet.pi.modal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +15,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name="name")
 	private String name;
 
+	@Column(name="email")
 	private String email;
 
+	@Column(name="password")
 	private String password;
 
 	public Long getId() {
