@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(name="name")
+	@Column(name="name", nullable = true)
 	private String name;
 
-	@Column(name="email")
+	@Column(name="email", nullable = true)
 	private String email;
 
-	@Column(name="password")
+	@Column(name="password", nullable = true)
 	private String password;
 	public Long getId() {
 		return id;
