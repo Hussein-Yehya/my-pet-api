@@ -49,7 +49,7 @@ public class UserController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity login(@RequestBody Login login) {
 
 		Optional<User> user = this.userSerivce.findByEmailAndPassword(login.getEmail(), login.getPassword());
