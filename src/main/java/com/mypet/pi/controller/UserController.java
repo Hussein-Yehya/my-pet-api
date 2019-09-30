@@ -43,7 +43,7 @@ public class UserController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@PostMapping
+	@PostMapping("/admin")
 	public ResponseEntity createADMIN(@RequestBody User user) {
 
 		logger.info("User {}", user.toString());
