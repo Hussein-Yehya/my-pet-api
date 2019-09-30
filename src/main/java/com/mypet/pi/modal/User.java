@@ -15,14 +15,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="name", nullable = true)
+	@Column(name = "name", nullable = true)
 	private String name;
 
-	@Column(name="email", nullable = true)
+	@Column(name = "email", nullable = true)
 	private String email;
 
-	@Column(name="password", nullable = true)
+	@Column(name = "password", nullable = true)
 	private String password;
+
+	private UserType userType;
+
 	public Long getId() {
 		return id;
 	}
@@ -55,22 +58,29 @@ public class User {
 		this.password = password;
 	}
 
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", userType="
+				+ userType + "]";
 	}
-	
-	public User(String name, String email, String password) {
+
+	public User(String name, String email, String password, UserType userType) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.userType = userType;
 	}
-	
+
 	public User() {
 		super();
 	}
-	
-	
 
-	
 }

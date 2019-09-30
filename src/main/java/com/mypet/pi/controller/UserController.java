@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mypet.pi.modal.Login;
 import com.mypet.pi.modal.User;
+import com.mypet.pi.modal.UserType;
 import com.mypet.pi.service.UserService;
 
 @RestController
 @RequestMapping("api/users")
 @CrossOrigin("*")
 public class UserController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -31,10 +34,21 @@ public class UserController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping
 	public ResponseEntity create(@RequestBody User user) {
-		
+
 		logger.info("User {}", user.toString());
 
-		this.userSerivce.create(user);
+		this.userSerivce.create(user, UserType.COMMON);
+
+		return ResponseEntity.ok().build();
+	}
+
+	@SuppressWarnings("rawtypes")
+	@PostMapping
+	public ResponseEntity createADMIN(@RequestBody User user) {
+
+		logger.info("User {}", user.toString());
+
+		this.userSerivce.create(user, UserType.ADMIN);
 
 		return ResponseEntity.ok().build();
 	}
@@ -60,4 +74,23 @@ public class UserController {
 
 		return ResponseEntity.noContent().build();
 	}
+
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping("/all")
+	public ResponseEntity deleteAll() {
+
+		this.userSerivce.deleteAll();
+
+		return ResponseEntity.ok().build();
+	}
+
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping("/{id}")
+	public ResponseEntity deleteById(@PathVariable("id") Long id) {
+
+		this.userSerivce.deleteById(id);
+
+		return ResponseEntity.ok().build();
+	}
+
 }
