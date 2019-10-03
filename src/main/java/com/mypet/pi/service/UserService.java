@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.mypet.pi.modal.Address;
 import com.mypet.pi.modal.User;
-import com.mypet.pi.modal.UserType;
 import com.mypet.pi.repository.UserRepository;
 
 @Service
@@ -17,18 +16,18 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void create(User user, UserType userType) {
+	public void create(User user) {
 
-		User u = this.buildUser(user, userType);
+		User u = this.buildUser(user);
 		this.userRepository.save(u);
 	}
 
-	private User buildUser(User user, UserType userType) {
+	private User buildUser(User user) {
 		User u = new User();
 		u.setName(user.getName());
 		u.setEmail(user.getEmail());
 		u.setPassword(user.getPassword());
-		u.setUserType(userType);
+		u.setUserType(user.getUserType());
 
 		Address address = this.buildAddress(user.getAddress());
 		

@@ -37,7 +37,9 @@ public class UserController {
 
 		logger.info("User {}", user.toString());
 
-		this.userSerivce.create(user, UserType.COMMON);
+		user.setUserType(UserType.COMMON);
+		
+		this.userSerivce.create(user);
 
 		return ResponseEntity.ok().build();
 	}
@@ -47,8 +49,10 @@ public class UserController {
 	public ResponseEntity createADMIN(@RequestBody User user) {
 
 		logger.info("User {}", user.toString());
-
-		this.userSerivce.create(user, UserType.ADMIN);
+		
+		user.setUserType(UserType.ADMIN);
+		
+		this.userSerivce.create(user);
 
 		return ResponseEntity.ok().build();
 	}
