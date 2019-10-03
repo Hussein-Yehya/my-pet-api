@@ -1,5 +1,6 @@
 package com.mypet.pi.modal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +32,10 @@ public class User {
 	@Column(name = "user_type")
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private Address address;
 
 	public Long getId() {
 		return id;
@@ -70,21 +77,18 @@ public class User {
 		this.userType = userType;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", userType="
-				+ userType + "]";
-	}
-
-	public User(String name, String email, String password, UserType userType) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.userType = userType;
-	}
-
-	public User() {
-		super();
+				+ userType + ", address=" + address + "]";
 	}
 
 }
