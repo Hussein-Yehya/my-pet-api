@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mypet.pi.modal.Address;
 import com.mypet.pi.modal.User;
 import com.mypet.pi.modal.UserType;
 import com.mypet.pi.repository.UserRepository;
@@ -18,7 +19,34 @@ public class UserService {
 
 	public void create(User user, UserType userType) {
 
-		this.userRepository.save(new User(user.getName(), user.getEmail(), user.getPassword(), userType));
+		User u = this.buildUser(user, userType);
+		this.userRepository.save(u);
+	}
+
+	private User buildUser(User user, UserType userType) {
+		User u = new User();
+		u.setName(user.getName());
+		u.setEmail(user.getEmail());
+		u.setPassword(user.getPassword());
+		u.setUserType(userType);
+
+		Address address = this.buildAddress(user.getAddress());
+		u.setAddress(address);
+
+		return u;
+	}
+
+	private Address buildAddress(Address address) {
+		Address a = new Address();
+		a.setCity(address.getCity());
+		a.setComplements(address.getComplements());
+		a.setCountry(address.getCountry());
+		a.setDistrict(a.getDistrict());
+		a.setNumber(address.getNumber());
+		a.setState(address.getState());
+		a.setStreet(address.getStreet());
+
+		return a;
 	}
 
 	public List<User> list() {
