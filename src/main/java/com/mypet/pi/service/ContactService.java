@@ -18,19 +18,22 @@ public class ContactService {
 
 		return this.contactRepository.findAll();
 	}
-	
+
 	public Contact getContactBy(Long id) {
 		return this.contactRepository.findById(id).get();
 	}
-	
+
 	public void create(Contact contact) {
-		
+
 		this.contactRepository.save(contact);
 	}
-	
+
 	public void delete(Long id) {
-		 this.contactRepository.deleteById(id);
+		this.contactRepository.deleteById(id);
 	}
-	
-	
+
+	public void deleteAll() {
+		this.contactRepository.deleteAll();
+	}
+
 }
