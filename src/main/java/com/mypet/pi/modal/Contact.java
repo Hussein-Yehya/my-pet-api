@@ -29,9 +29,9 @@ public class Contact {
 	@Column(name = "url_image")
 	private String urlImage;
 
-	private boolean vaccinated;
+	private Boolean vaccinated = Boolean.FALSE;
 
-	private boolean disease;
+	private Boolean disease = Boolean.FALSE;
 
 	@Column(name = "pet_size")
 	@Enumerated(EnumType.STRING)
