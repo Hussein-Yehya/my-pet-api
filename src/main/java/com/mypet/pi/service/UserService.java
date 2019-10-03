@@ -31,6 +31,7 @@ public class UserService {
 		u.setUserType(userType);
 
 		Address address = this.buildAddress(user.getAddress());
+		
 		u.setAddress(address);
 
 		return u;
@@ -41,7 +42,7 @@ public class UserService {
 		a.setCity(address.getCity());
 		a.setComplements(address.getComplements());
 		a.setCountry(address.getCountry());
-		a.setDistrict(a.getDistrict());
+		a.setDistrict(address.getDistrict());
 		a.setNumber(address.getNumber());
 		a.setState(address.getState());
 		a.setStreet(address.getStreet());
