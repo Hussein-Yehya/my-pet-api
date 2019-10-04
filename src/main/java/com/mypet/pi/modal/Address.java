@@ -27,9 +27,6 @@ public class Address {
 
 	private String complements;
 
-	@OneToOne(mappedBy = "address")
-	private User user;
-
 	public Long getId() {
 		return id;
 	}
@@ -94,19 +91,11 @@ public class Address {
 		this.complements = complements;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", country=" + country + ", state=" + state + ", city=" + city + ", district="
 				+ district + ", street=" + street + ", number=" + number + ", complements=" + complements + ", user="
-				+ user + "]";
+				+ "]";
 	}
 
 }

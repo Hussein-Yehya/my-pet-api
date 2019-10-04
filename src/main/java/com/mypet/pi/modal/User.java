@@ -29,7 +29,7 @@ public class User {
 	@Column(name = "password", nullable = true)
 	private String password;
 
-	@Column(name = "user_type", columnDefinition = "TEXT")
+	@Column(name = "user_type")
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
 
