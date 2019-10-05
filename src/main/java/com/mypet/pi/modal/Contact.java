@@ -45,6 +45,13 @@ public class Contact {
 	@Enumerated(EnumType.STRING)
 	private CoatLength coatLength;
 
+	@Enumerated(EnumType.STRING)
+	private Genre genre;
+
+	@Column(name = "pet_type")
+	@Enumerated(EnumType.STRING)
+	private PetType petType;
+
 	private String color;
 
 	private String bloodType;
@@ -153,12 +160,56 @@ public class Contact {
 		this.bloodType = bloodType;
 	}
 
-	@Override
-	public String toString() {
-		return "Contact [id=" + id + ", name=" + name + ", age=" + age + ", breed=" + breed + ", description="
-				+ description + ", urlImage=" + urlImage + ", vaccinated=" + vaccinated + ", disease=" + disease
-				+ ", petSize=" + petSize + ", petRecommendedTo=" + petRecommendedTo + ", coatLength=" + coatLength
-				+ ", color=" + color + ", bloodType=" + bloodType + "]";
+	public Boolean getVaccinated() {
+		return vaccinated;
 	}
 
+	public void setVaccinated(Boolean vaccinated) {
+		this.vaccinated = vaccinated;
+	}
+
+	public Boolean getDisease() {
+		return disease;
+	}
+
+	public void setDisease(Boolean disease) {
+		this.disease = disease;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
+
+	public PetType getPetType() {
+		return petType;
+	}
+
+	public void setPetType(PetType petType) {
+		this.petType = petType;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", age=" + age +
+				", breed='" + breed + '\'' +
+				", description='" + description + '\'' +
+				", urlImage='" + urlImage + '\'' +
+				", vaccinated=" + vaccinated +
+				", disease=" + disease +
+				", petSize=" + petSize +
+				", petRecommendedTo=" + petRecommendedTo +
+				", coatLength=" + coatLength +
+				", genre=" + genre +
+				", petType=" + petType +
+				", color='" + color + '\'' +
+				", bloodType='" + bloodType + '\'' +
+				'}';
+	}
 }
