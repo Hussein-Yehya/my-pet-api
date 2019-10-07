@@ -1,6 +1,7 @@
 package com.mypet.pi.modal;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,8 +29,8 @@ public class User {
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 
-	@OneToMany(mappedBy = "users")
-	private Set<Contact> contacts;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Contact> contacts;
 
 	public Long getId() {
 		return id;
@@ -79,11 +80,11 @@ public class User {
 		this.address = address;
 	}
 
-	public Set<Contact> getContacts() {
+	public List<Contact> getContacts() {
 		return contacts;
 	}
 
-	public void setContacts(Set<Contact> contacts) {
+	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
 
