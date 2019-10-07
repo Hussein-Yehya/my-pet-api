@@ -1,13 +1,6 @@
 package com.mypet.pi.modal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
@@ -52,6 +45,9 @@ public class Contact {
 	@Enumerated(EnumType.STRING)
 	private PetType petType;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable=false)
+	private  User user;
 	private String color;
 
 	private String bloodType;
@@ -190,6 +186,14 @@ public class Contact {
 
 	public void setPetType(PetType petType) {
 		this.petType = petType;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
