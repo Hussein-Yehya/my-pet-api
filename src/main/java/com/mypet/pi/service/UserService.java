@@ -1,6 +1,7 @@
 package com.mypet.pi.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserService {
 
 	private User buildUser(User user) {
 		User u = new User();
+		
+		u.setId(Objects.isNull(user.getId()) ? null : user.getId());
+		
 		u.setName(user.getName());
 		u.setEmail(user.getEmail());
 		u.setPassword(user.getPassword());
