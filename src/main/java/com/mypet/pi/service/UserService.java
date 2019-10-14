@@ -69,4 +69,10 @@ public class UserService {
 		this.userRepository.deleteById(id);
 
 	}
+	
+	public Optional<User> getById(Long id) {
+
+		return this.userRepository.findById(id);
+
+	}
 }

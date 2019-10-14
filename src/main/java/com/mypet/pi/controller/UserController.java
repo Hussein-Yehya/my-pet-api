@@ -38,7 +38,7 @@ public class UserController {
 		logger.info("User {}", user.toString());
 
 		user.setUserType(UserType.COMMON);
-		
+
 		this.userSerivce.create(user);
 
 		return ResponseEntity.ok().build();
@@ -49,9 +49,9 @@ public class UserController {
 	public ResponseEntity createADMIN(@RequestBody User user) {
 
 		logger.info("User {}", user.toString());
-		
+
 		user.setUserType(UserType.ADMIN);
-		
+
 		this.userSerivce.create(user);
 
 		return ResponseEntity.ok().build();
@@ -95,6 +95,19 @@ public class UserController {
 		this.userSerivce.deleteById(id);
 
 		return ResponseEntity.ok().build();
+	}
+
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/{id}")
+	public ResponseEntity getById(@PathVariable("id") Long id) {
+
+		Optional<User> user = this.userSerivce.getById(id);
+
+		if (user.isPresent()) {
+			return ResponseEntity.ok(user.get());
+		}
+
+		return ResponseEntity.noContent().build();
 	}
 
 }
