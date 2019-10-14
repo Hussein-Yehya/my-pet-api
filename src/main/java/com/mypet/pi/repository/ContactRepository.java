@@ -10,5 +10,5 @@ import com.mypet.pi.modal.Contact;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
-	public List<Contact> findByIdCreationDateDesc();
+
 }

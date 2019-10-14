@@ -3,6 +3,7 @@ package com.mypet.pi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mypet.pi.modal.Contact;
@@ -16,7 +17,7 @@ public class ContactService {
 
 	public List<Contact> findAllContact() {
 
-		return this.contactRepository.findByIdCreationDateDesc();
+		return this.contactRepository.findAll();
 	}
 
 	public Contact getContactBy(Long id) {
