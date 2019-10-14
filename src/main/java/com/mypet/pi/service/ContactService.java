@@ -16,7 +16,7 @@ public class ContactService {
 
 	public List<Contact> findAllContact() {
 
-		return this.contactRepository.findAllOrderByIdCreationDateDesc();
+		return this.contactRepository.findByIdCreationDateDesc();
 	}
 
 	public Contact getContactBy(Long id) {
