@@ -51,7 +51,7 @@ public class UserService {
 
 	public List<User> findAllUsers() {
 
-		return this.userRepository.findAllOrderByIdCreationDateDesc();
+		return this.userRepository.findAllOrderByCreationDateDesc();
 	}
 
 	public Optional<User> findByEmailAndPassword(String email, String password) {
