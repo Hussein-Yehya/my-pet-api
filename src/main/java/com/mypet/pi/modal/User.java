@@ -1,8 +1,20 @@
 package com.mypet.pi.modal;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +32,9 @@ public class User {
 
 	@Column(name = "password", nullable = true)
 	private String password;
+
+	@Column(name = "creation_date", nullable = true)
+	private LocalDateTime creationDate = LocalDateTime.now();
 
 	@Column(name = "user_type")
 	@Enumerated(EnumType.STRING)
@@ -88,10 +103,18 @@ public class User {
 		this.contacts = contacts;
 	}
 
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", userType="
-				+ userType + ", address=" + address + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", creationDate="
+				+ creationDate + ", userType=" + userType + ", address=" + address + ", contacts=" + contacts + "]";
 	}
 
 }

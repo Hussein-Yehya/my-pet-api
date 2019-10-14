@@ -14,9 +14,9 @@ public class ContactService {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public List<Contact> allContact() {
+	public List<Contact> findAllContact() {
 
-		return this.contactRepository.findAll();
+		return this.contactRepository.findAllOrderByIdCreationDateDesc();
 	}
 
 	public Contact getContactBy(Long id) {

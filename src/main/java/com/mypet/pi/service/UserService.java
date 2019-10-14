@@ -49,9 +49,9 @@ public class UserService {
 		return a;
 	}
 
-	public List<User> list() {
+	public List<User> findAllUsers() {
 
-		return this.userRepository.findAll();
+		return this.userRepository.findAllOrderByIdCreationDateDesc();
 	}
 
 	public Optional<User> findByEmailAndPassword(String email, String password) {

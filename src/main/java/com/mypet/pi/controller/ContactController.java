@@ -26,16 +26,16 @@ public class ContactController {
 
 	@SuppressWarnings("rawtypes")
 	@GetMapping
-	public ResponseEntity test() {
+	public ResponseEntity getAll() {
 
-		List<Contact> contacts = this.contactService.allContact();
+		List<Contact> contacts = this.contactService.findAllContact();
 
 		return ResponseEntity.ok(contacts);
 	}
 
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/{id}")
-	public ResponseEntity test(@PathVariable("id") Long id) {
+	public ResponseEntity getById(@PathVariable("id") Long id) {
 
 		Contact contact = this.contactService.getContactBy(id);
 
@@ -53,7 +53,7 @@ public class ContactController {
 
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
-	public ResponseEntity delete(@PathVariable("id") Long id) {
+	public ResponseEntity deleteById(@PathVariable("id") Long id) {
 
 		this.contactService.delete(id);
 

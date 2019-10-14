@@ -1,5 +1,7 @@
 package com.mypet.pi.modal;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
@@ -8,185 +10,188 @@ import org.hibernate.annotations.Type;
 @Table(name = "contatos")
 public class Contact {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private int age;
-    private String breed;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	private int age;
+	private String breed;
 
-    @Column(name = "description")
-    @Type(type = "text")
-    private String description;
+	@Column(name = "description")
+	@Type(type = "text")
+	private String description;
 
-    @Column(name = "url_image")
-    private String urlImage;
+	@Column(name = "url_image")
+	private String urlImage;
 
-    private Boolean vaccinated = Boolean.FALSE;
+	private Boolean vaccinated = Boolean.FALSE;
 
-    private Boolean disease = Boolean.FALSE;
+	private Boolean disease = Boolean.FALSE;
 
-    @Column(name = "pet_size")
-    @Enumerated(EnumType.STRING)
-    private PetSize petSize;
+	@Column(name = "pet_size")
+	@Enumerated(EnumType.STRING)
+	private PetSize petSize;
 
-    @Column(name = "pet_recommended_to")
-    @Enumerated(EnumType.STRING)
-    private PetRecommendedTo petRecommendedTo;
+	@Column(name = "pet_recommended_to")
+	@Enumerated(EnumType.STRING)
+	private PetRecommendedTo petRecommendedTo;
 
-    @Column(name = "coat_length")
-    @Enumerated(EnumType.STRING)
-    private CoatLength coatLength;
+	@Column(name = "coat_length")
+	@Enumerated(EnumType.STRING)
+	private CoatLength coatLength;
 
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+	@Enumerated(EnumType.STRING)
+	private Genre genre;
 
-    @Column(name = "pet_type")
-    @Enumerated(EnumType.STRING)
-    private PetType petType;
+	@Column(name = "pet_type")
+	@Enumerated(EnumType.STRING)
+	private PetType petType;
 
-    private String color;
+	private String color;
 
-    private String bloodType;
+	private String bloodType;
 
-    @ManyToOne
-    private User users;
+	@Column(name = "creation_date", nullable = true)
+	private LocalDateTime creationDate = LocalDateTime.now();
 
-    public Long getId() {
-        return id;
-    }
+	@ManyToOne
+	private User users;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public int getAge() {
-        return age;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+	public int getAge() {
+		return age;
+	}
 
-    public String getBreed() {
-        return breed;
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
 
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
+	public String getBreed() {
+		return breed;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getUrlImage() {
-        return urlImage;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
+	public String getUrlImage() {
+		return urlImage;
+	}
 
-    public boolean isVaccinated() {
-        return vaccinated;
-    }
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
 
-    public void setVaccinated(boolean vaccinated) {
-        this.vaccinated = vaccinated;
-    }
+	public boolean isVaccinated() {
+		return vaccinated;
+	}
 
-    public boolean isDisease() {
-        return disease;
-    }
+	public void setVaccinated(boolean vaccinated) {
+		this.vaccinated = vaccinated;
+	}
 
-    public void setDisease(boolean disease) {
-        this.disease = disease;
-    }
+	public boolean isDisease() {
+		return disease;
+	}
 
-    public PetSize getPetSize() {
-        return petSize;
-    }
+	public void setDisease(boolean disease) {
+		this.disease = disease;
+	}
 
-    public void setPetSize(PetSize petSize) {
-        this.petSize = petSize;
-    }
+	public PetSize getPetSize() {
+		return petSize;
+	}
 
-    public PetRecommendedTo getPetRecommendedTo() {
-        return petRecommendedTo;
-    }
+	public void setPetSize(PetSize petSize) {
+		this.petSize = petSize;
+	}
 
-    public void setPetRecommendedTo(PetRecommendedTo petRecommendedTo) {
-        this.petRecommendedTo = petRecommendedTo;
-    }
+	public PetRecommendedTo getPetRecommendedTo() {
+		return petRecommendedTo;
+	}
 
-    public CoatLength getCoatLength() {
-        return coatLength;
-    }
+	public void setPetRecommendedTo(PetRecommendedTo petRecommendedTo) {
+		this.petRecommendedTo = petRecommendedTo;
+	}
 
-    public void setCoatLength(CoatLength coatLength) {
-        this.coatLength = coatLength;
-    }
+	public CoatLength getCoatLength() {
+		return coatLength;
+	}
 
-    public String getColor() {
-        return color;
-    }
+	public void setCoatLength(CoatLength coatLength) {
+		this.coatLength = coatLength;
+	}
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+	public String getColor() {
+		return color;
+	}
 
-    public String getBloodType() {
-        return bloodType;
-    }
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-    public void setBloodType(String bloodType) {
-        this.bloodType = bloodType;
-    }
+	public String getBloodType() {
+		return bloodType;
+	}
 
-    public Boolean getVaccinated() {
-        return vaccinated;
-    }
+	public void setBloodType(String bloodType) {
+		this.bloodType = bloodType;
+	}
 
-    public void setVaccinated(Boolean vaccinated) {
-        this.vaccinated = vaccinated;
-    }
+	public Boolean getVaccinated() {
+		return vaccinated;
+	}
 
-    public Boolean getDisease() {
-        return disease;
-    }
+	public void setVaccinated(Boolean vaccinated) {
+		this.vaccinated = vaccinated;
+	}
 
-    public void setDisease(Boolean disease) {
-        this.disease = disease;
-    }
+	public Boolean getDisease() {
+		return disease;
+	}
 
-    public Genre getGenre() {
-        return genre;
-    }
+	public void setDisease(Boolean disease) {
+		this.disease = disease;
+	}
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
+	public Genre getGenre() {
+		return genre;
+	}
 
-    public PetType getPetType() {
-        return petType;
-    }
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
+	public PetType getPetType() {
+		return petType;
+	}
+
+	public void setPetType(PetType petType) {
+		this.petType = petType;
+	}
 
 	public User getUsers() {
 		return users;
@@ -196,24 +201,21 @@ public class Contact {
 		this.users = users;
 	}
 
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+
 	@Override
-    public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", breed='" + breed + '\'' +
-                ", description='" + description + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                ", vaccinated=" + vaccinated +
-                ", disease=" + disease +
-                ", petSize=" + petSize +
-                ", petRecommendedTo=" + petRecommendedTo +
-                ", coatLength=" + coatLength +
-                ", genre=" + genre +
-                ", petType=" + petType +
-                ", color='" + color + '\'' +
-                ", bloodType='" + bloodType + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "Contact [id=" + id + ", name=" + name + ", age=" + age + ", breed=" + breed + ", description="
+				+ description + ", urlImage=" + urlImage + ", vaccinated=" + vaccinated + ", disease=" + disease
+				+ ", petSize=" + petSize + ", petRecommendedTo=" + petRecommendedTo + ", coatLength=" + coatLength
+				+ ", genre=" + genre + ", petType=" + petType + ", color=" + color + ", bloodType=" + bloodType
+				+ ", creationDate=" + creationDate + ", users=" + users + "]";
+	}
+
 }
