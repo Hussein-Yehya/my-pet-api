@@ -61,7 +61,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity list() {
 
-		List<User> users = this.userSerivce.findAllUsers();
+		List<User> users = this.userSerivce.findAllUsers ();
 
 		return ResponseEntity.ok(users);
 	}

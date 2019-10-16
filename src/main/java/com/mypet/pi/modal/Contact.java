@@ -2,7 +2,16 @@ package com.mypet.pi.modal;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
@@ -55,7 +64,8 @@ public class Contact {
 	private LocalDateTime creationDate = LocalDateTime.now();
 
 	@ManyToOne
-	private User users;
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -193,14 +203,6 @@ public class Contact {
 		this.petType = petType;
 	}
 
-	public User getUsers() {
-		return users;
-	}
-
-	public void setUsers(User users) {
-		this.users = users;
-	}
-
 	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
@@ -209,13 +211,12 @@ public class Contact {
 		this.creationDate = creationDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Contact [id=" + id + ", name=" + name + ", age=" + age + ", breed=" + breed + ", description="
-				+ description + ", urlImage=" + urlImage + ", vaccinated=" + vaccinated + ", disease=" + disease
-				+ ", petSize=" + petSize + ", petRecommendedTo=" + petRecommendedTo + ", coatLength=" + coatLength
-				+ ", genre=" + genre + ", petType=" + petType + ", color=" + color + ", bloodType=" + bloodType
-				+ ", creationDate=" + creationDate + ", users=" + users + "]";
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

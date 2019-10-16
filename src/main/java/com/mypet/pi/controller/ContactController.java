@@ -1,6 +1,8 @@
 package com.mypet.pi.controller;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mypet.pi.modal.Contact;
+import com.mypet.pi.modal.User;
+import com.mypet.pi.repository.UserRepository;
 import com.mypet.pi.service.ContactService;
 
 @RestController
@@ -24,11 +28,15 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@SuppressWarnings("rawtypes")
 	@GetMapping
 	public ResponseEntity getAll() {
 
 		List<Contact> contacts = this.contactService.findAllContact();
+
 
 		return ResponseEntity.ok(contacts);
 	}
@@ -46,9 +54,22 @@ public class ContactController {
 	@PostMapping("")
 	public ResponseEntity create(@RequestBody Contact contact) {
 
-		this.contactService.create(contact);
+		if (Objects.nonNull(contact.getUser())) {
+			Optional<User> user = this.userRepository.findById(contact.getUser().getId());
 
-		return ResponseEntity.ok(contact);
+			if (user.isPresent()) {
+				contact.setUser(user.get());
+
+				this.contactService.create(contact);
+
+				return ResponseEntity.ok().build();
+
+			}
+
+		}
+
+		return ResponseEntity.badRequest().build();
+
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -68,5 +89,18 @@ public class ContactController {
 
 		return ResponseEntity.ok().build();
 	}
+	
+	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/users/{idUser}")
+	public ResponseEntity getContactByIdUser(@PathVariable("idUser") Long idUser) {
+
+		List<Contact> contacts = this.contactService.getContactByIdUser(idUser);
+
+		return ResponseEntity.ok(contacts);
+	}
+	
+	
+	
 
 }

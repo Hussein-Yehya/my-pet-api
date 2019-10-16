@@ -16,8 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
 
 	@Id
@@ -44,7 +49,8 @@ public class User {
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Contact> contacts;
 
 	public Long getId() {
@@ -95,14 +101,6 @@ public class User {
 		this.address = address;
 	}
 
-	public List<Contact> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
-
 	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
@@ -111,10 +109,12 @@ public class User {
 		this.creationDate = creationDate;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", creationDate="
-				+ creationDate + ", userType=" + userType + ", address=" + address + ", contacts=" + contacts + "]";
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 }

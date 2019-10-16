@@ -10,5 +10,6 @@ import com.mypet.pi.modal.Contact;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
+	List<Contact> findByUserId(Long idUser);
 
 }
