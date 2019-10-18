@@ -43,4 +43,8 @@ public class ContactService {
 
 	}
 
+	public List<Contact> getContactByName(String name) {
+		return  this.contactRepository.findByNameStartingWithIgnoreCase(name);
+	}
+	
 }

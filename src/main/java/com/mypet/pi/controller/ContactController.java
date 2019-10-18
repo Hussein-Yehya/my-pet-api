@@ -101,6 +101,20 @@ public class ContactController {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/name/{name}")
+	public ResponseEntity getContactByName(@PathVariable("name") String name) {
+
+		List<Contact> contacts = this.contactService.getContactByName(name);
+
+		 return ResponseEntity.ok(contacts);
+
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(System.currentTimeMillis());
+	}
+	
 	
 
 }
