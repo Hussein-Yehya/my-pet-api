@@ -1,6 +1,7 @@
 package com.mypet.pi.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,11 @@ public class ContactService {
 	}
 
 	public void create(Contact contact) {
-
+		
+		if(Objects.nonNull(contact.getUrlImage()) || contact.getUrlImage().isEmpty()) {
+			contact.setUrlImage("http://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-2.jpg");
+		}
+		
 		this.contactRepository.save(contact);
 
 	}

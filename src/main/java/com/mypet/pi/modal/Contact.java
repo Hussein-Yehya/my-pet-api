@@ -31,7 +31,7 @@ public class Contact {
 	private String description;
 
 	@Column(name = "url_image")
-	private String urlImage = "http://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-2.jpg";
+	private String urlImage;
 
 	private Boolean vaccinated = Boolean.FALSE;
 
