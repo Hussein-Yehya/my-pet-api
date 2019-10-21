@@ -53,6 +53,8 @@ public class ContactController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping("")
 	public ResponseEntity create(@RequestBody Contact contact) {
+		
+		System.out.println("RECEBENDO UM NOVO CONTACT: " + contact.toString());
 
 		if (Objects.nonNull(contact.getUser())) {
 			Optional<User> user = this.userRepository.findById(contact.getUser().getId());

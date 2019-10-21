@@ -219,4 +219,15 @@ public class Contact {
 		this.user = user;
 	}
 
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", name=" + name + ", age=" + age + ", breed=" + breed + ", description="
+				+ description + ", urlImage=" + urlImage + ", vaccinated=" + vaccinated + ", disease=" + disease
+				+ ", petSize=" + petSize + ", petRecommendedTo=" + petRecommendedTo + ", coatLength=" + coatLength
+				+ ", genre=" + genre + ", petType=" + petType + ", color=" + color + ", bloodType=" + bloodType
+				+ ", creationDate=" + creationDate + ", user=" + user + "]";
+	}
+	
+	
+
 }
