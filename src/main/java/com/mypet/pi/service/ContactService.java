@@ -52,5 +52,10 @@ public class ContactService {
 		String breed = name;
 		return  this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(name, breed);
 	}
+
+	public List<Contact> getContactByNameAndUserId(String name, Long userId) {
+		String breed = name;
+		return this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseAndUserId(name, breed, userId);
+	}
 	
 }

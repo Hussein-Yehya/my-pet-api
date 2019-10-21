@@ -113,6 +113,16 @@ public class ContactController {
 
 	}
 	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/name/{name}/user/{userId}")
+	public ResponseEntity getContactByNameAndUserId(@PathVariable("name") String name, @PathVariable("userId") Long userId) {
+
+		List<Contact> contacts = this.contactService.getContactByNameAndUserId(name, userId);
+
+		 return ResponseEntity.ok(contacts);
+
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(System.currentTimeMillis());
 	}
