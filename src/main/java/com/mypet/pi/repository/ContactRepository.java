@@ -11,13 +11,12 @@ import com.mypet.pi.modal.Contact;
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
 	List<Contact> findByUserId(Long idUser);
-	
+
 	List<Contact> findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(String name, String breed);
-	
+
 	List<Contact> findByOrderByCreationDateDesc();
 
-	List<Contact> findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseAndUserId(String name, String breed,
-			Long userId);
+	List<Contact> findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(Long userId, String name,
+			String breed);
 
-	
 }

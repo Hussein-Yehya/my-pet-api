@@ -26,11 +26,11 @@ public class ContactService {
 	}
 
 	public void create(Contact contact) {
-		
-		if(Objects.isNull(contact.getUrlImage()) || contact.getUrlImage().isEmpty()) {
+
+		if (Objects.isNull(contact.getUrlImage()) || contact.getUrlImage().isEmpty()) {
 			contact.setUrlImage("http://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-2.jpg");
 		}
-		
+
 		this.contactRepository.save(contact);
 
 	}
@@ -50,12 +50,13 @@ public class ContactService {
 
 	public List<Contact> getContactByName(String name) {
 		String breed = name;
-		return  this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(name, breed);
+		return this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(name, breed);
 	}
 
 	public List<Contact> getContactByNameAndUserId(String name, Long userId) {
 		String breed = name;
-		return this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseAndUserId(name, breed, userId);
+		return this.contactRepository.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(userId,
+				name, breed);
 	}
-	
+
 }
