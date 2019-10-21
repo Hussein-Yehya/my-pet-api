@@ -109,5 +109,15 @@ public class UserController {
 
 		return ResponseEntity.noContent().build();
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/name/{name}")
+	public ResponseEntity getContactByName(@PathVariable("name") String name) {
+
+		List<User> users = this.userSerivce.findByNameOREmail(name);
+
+		 return ResponseEntity.ok(users);
+
+	}
 
 }

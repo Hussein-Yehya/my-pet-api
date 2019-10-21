@@ -57,7 +57,15 @@ public class UserService {
 
 		return this.userRepository.findAll();
 	}
+	
+	public List<User> findByNameOREmail(String param) {
+		String name = param;
+		String email = param;
 
+		return this.userRepository.findByNameStartingWithIgnoreCaseOrEmailStartingWithIgnoreCase(name, email);
+	}
+
+	
 	public Optional<User> findByEmailAndPassword(String email, String password) {
 		return this.userRepository.findByEmailAndPassword(email, password);
 	}
