@@ -27,7 +27,7 @@ public class ContactService {
 
 	public void create(Contact contact) {
 		
-		if(Objects.nonNull(contact.getUrlImage()) || contact.getUrlImage().isEmpty()) {
+		if(Objects.isNull(contact.getUrlImage()) || contact.getUrlImage().isEmpty()) {
 			contact.setUrlImage("http://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-2.jpg");
 		}
 		
