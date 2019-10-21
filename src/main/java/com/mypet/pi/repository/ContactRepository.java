@@ -13,5 +13,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 	List<Contact> findByUserId(Long idUser);
 	
 	List<Contact> findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(String name, String breed);
+	
+	List<Contact> findByOrderByCreationDateDesc();
 
+	
 }

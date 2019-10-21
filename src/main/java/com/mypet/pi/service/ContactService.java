@@ -17,7 +17,7 @@ public class ContactService {
 
 	public List<Contact> findAllContact() {
 
-		List<Contact> findAll = this.contactRepository.findAll();
+		List<Contact> findAll = this.contactRepository.findByOrderByCreationDateDesc();
 		return findAll;
 	}
 
