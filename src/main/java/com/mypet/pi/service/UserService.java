@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mypet.pi.modal.Address;
 import com.mypet.pi.modal.User;
+import com.mypet.pi.repository.ContactRepository;
 import com.mypet.pi.repository.UserRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 
 	public void create(User user) {
 
@@ -77,6 +81,8 @@ public class UserService {
 	}
 
 	public void deleteById(Long id) {
+		
+		this.contactRepository.deleteByUserId(id);
 
 		this.userRepository.deleteById(id);
 

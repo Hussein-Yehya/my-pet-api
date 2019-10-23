@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mypet.pi.modal.Contact;
 
@@ -18,5 +19,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
 	List<Contact> findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(Long userId, String name,
 			String breed);
+	
+	@Transactional
+	void deleteByUserId(Long idUser);
 
 }
