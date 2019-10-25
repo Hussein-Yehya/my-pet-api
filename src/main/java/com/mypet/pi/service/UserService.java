@@ -36,6 +36,7 @@ public class UserService {
 		u.setEmail(user.getEmail());
 		u.setPassword(user.getPassword());
 		u.setUserType(user.getUserType());
+		u.setPhone(user.getPhone());
 
 		Address address = this.buildAddress(user.getAddress());
 		
