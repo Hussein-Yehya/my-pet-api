@@ -42,6 +42,8 @@ public class User {
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 
+	@Column(name = "phone", nullable = true)
+	private String phone;
 
 	public Long getId() {
 		return id;
@@ -99,5 +101,12 @@ public class User {
 		this.creationDate = creationDate;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 }
