@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,9 +40,14 @@ public class UserController {
 
 		user.setUserType(UserType.COMMON);
 
-		this.userSerivce.create(user);
+		boolean success = this.userSerivce.create(user);
+		
+		if(success) {
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
-		return ResponseEntity.ok().build();
 	}
 
 	@SuppressWarnings("rawtypes")

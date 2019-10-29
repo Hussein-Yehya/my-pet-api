@@ -21,10 +21,18 @@ public class UserService {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public void create(User user) {
+	public boolean create(User user) {
+		
+		Optional<User> userOptional = this.userRepository.findByEmail(user.getEmail());
+		
+		if(userOptional.isPresent()) {
+			return Boolean.FALSE;
+		}
 
 		User u = this.buildUser(user);
 		this.userRepository.save(u);
+		
+		return Boolean.TRUE;
 	}
 
 	private User buildUser(User user) {
