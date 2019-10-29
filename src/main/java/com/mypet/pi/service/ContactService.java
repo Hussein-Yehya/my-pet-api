@@ -18,12 +18,15 @@ public class ContactService {
 
 	public List<Contact> findAllContact() {
 
-		List<Contact> findAll = this.contactRepository.findByOrderByCreationDateDesc();
-		return findAll;
+		return this.contactRepository.findByActiveTrueOrderByCreationDateDesc();
 	}
 
 	public Contact getContactBy(Long id) {
-		return this.contactRepository.findById(id).get();
+		Optional<Contact> contactOptional = this.contactRepository.findById(id);
+		if (contactOptional.isPresent()) {
+			return contactOptional.get();
+		}
+		return null;
 	}
 
 	public void create(Contact contact) {
