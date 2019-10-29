@@ -100,4 +100,16 @@ public class ContactService {
 		contact.setActive(status);
 	}
 
+	public boolean undoneAll() {
+
+		List<Contact> contacts = this.contactRepository.findAll();
+
+		contacts.stream().forEach(contact -> {
+			contact.setActive(Boolean.TRUE);
+			this.contactRepository.save(contact);
+		});
+
+		return Boolean.TRUE;
+	}
+
 }

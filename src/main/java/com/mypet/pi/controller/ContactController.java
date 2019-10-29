@@ -147,5 +147,18 @@ public class ContactController {
 
 		return ResponseEntity.noContent().build();
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/undone/all")
+	public ResponseEntity undoneAll() {
+
+		boolean undoneContact = this.contactService.undoneAll();
+
+		if (undoneContact) {
+			return ResponseEntity.ok().build();
+		}
+
+		return ResponseEntity.noContent().build();
+	}
 
 }
