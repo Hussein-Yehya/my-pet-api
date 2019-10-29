@@ -67,6 +67,8 @@ public class Contact {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
+	private Boolean active = Boolean.TRUE;
+
 	public Long getId() {
 		return id;
 	}
@@ -219,15 +221,21 @@ public class Contact {
 		this.user = user;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return "Contact [id=" + id + ", name=" + name + ", age=" + age + ", breed=" + breed + ", description="
 				+ description + ", urlImage=" + urlImage + ", vaccinated=" + vaccinated + ", disease=" + disease
 				+ ", petSize=" + petSize + ", petRecommendedTo=" + petRecommendedTo + ", coatLength=" + coatLength
 				+ ", genre=" + genre + ", petType=" + petType + ", color=" + color + ", bloodType=" + bloodType
-				+ ", creationDate=" + creationDate + ", user=" + user + "]";
+				+ ", creationDate=" + creationDate + ", user=" + user + ", active=" + active + "]";
 	}
-	
-	
 
 }

@@ -2,6 +2,7 @@ package com.mypet.pi.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,6 +58,43 @@ public class ContactService {
 		String breed = name;
 		return this.contactRepository.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(userId,
 				name, breed);
+	}
+
+	public boolean pauseContact(Long id) {
+
+		Optional<Contact> contactOptional = this.contactRepository.findById(id);
+
+		if (contactOptional.isPresent()) {
+			Contact contact = contactOptional.get();
+			this.changeStatusContact(contact, false);
+
+			this.contactRepository.save(contact);
+
+			return Boolean.TRUE;
+		}
+
+		return Boolean.FALSE;
+	}
+
+	public boolean undoneContact(Long id) {
+
+		Optional<Contact> contactOptional = this.contactRepository.findById(id);
+
+		if (contactOptional.isPresent()) {
+			Contact contact = contactOptional.get();
+			this.changeStatusContact(contact, true);
+
+			this.contactRepository.save(contact);
+
+			return Boolean.TRUE;
+		}
+
+		return Boolean.FALSE;
+
+	}
+
+	private void changeStatusContact(Contact contact, boolean status) {
+		contact.setActive(status);
 	}
 
 }

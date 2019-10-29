@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,6 @@ public class ContactController {
 
 		List<Contact> contacts = this.contactService.findAllContact();
 
-
 		return ResponseEntity.ok(contacts);
 	}
 
@@ -53,7 +53,7 @@ public class ContactController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping("")
 	public ResponseEntity create(@RequestBody Contact contact) {
-		
+
 		System.out.println("RECEBENDO UM NOVO CONTACT: " + contact.toString());
 
 		if (Objects.nonNull(contact.getUser())) {
@@ -91,8 +91,7 @@ public class ContactController {
 
 		return ResponseEntity.ok().build();
 	}
-	
-	
+
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/users/{idUser}")
 	public ResponseEntity getContactByIdUser(@PathVariable("idUser") Long idUser) {
@@ -101,32 +100,52 @@ public class ContactController {
 
 		return ResponseEntity.ok(contacts);
 	}
-	
-	
+
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/name/{name}")
 	public ResponseEntity getContactByName(@PathVariable("name") String name) {
 
 		List<Contact> contacts = this.contactService.getContactByName(name);
 
-		 return ResponseEntity.ok(contacts);
+		return ResponseEntity.ok(contacts);
 
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/name/{name}/user/{userId}")
-	public ResponseEntity getContactByNameAndUserId(@PathVariable("name") String name, @PathVariable("userId") Long userId) {
+	public ResponseEntity getContactByNameAndUserId(@PathVariable("name") String name,
+			@PathVariable("userId") Long userId) {
 
 		List<Contact> contacts = this.contactService.getContactByNameAndUserId(name, userId);
 
-		 return ResponseEntity.ok(contacts);
+		return ResponseEntity.ok(contacts);
 
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(System.currentTimeMillis());
+
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/pause/{id}")
+	public ResponseEntity pauseContact(@PathVariable("id") Long id) {
+
+		boolean pauseContact = this.contactService.pauseContact(id);
+
+		if (pauseContact) {
+			return ResponseEntity.ok().build();
+		}
+
+		return ResponseEntity.noContent().build();
 	}
-	
-	
+
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/undone/{id}")
+	public ResponseEntity undoneContact(@PathVariable("id") Long id) {
+
+		boolean undoneContact = this.contactService.undoneContact(id);
+
+		if (undoneContact) {
+			return ResponseEntity.ok().build();
+		}
+
+		return ResponseEntity.noContent().build();
+	}
 
 }
