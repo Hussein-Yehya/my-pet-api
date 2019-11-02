@@ -59,8 +59,10 @@ public class ContactService {
 
 	public List<Contact> getContactByNameAndUserId(String name, Long userId) {
 		String breed = name;
-		return this.contactRepository.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(userId,
-				name, breed);
+		String petRecommendedTo = name;
+		return this.contactRepository
+				.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseOrPetRecommendedToStartingWithIgnoreCase(
+						userId, name, breed, petRecommendedTo);
 	}
 
 	public boolean pauseContact(Long id) {
