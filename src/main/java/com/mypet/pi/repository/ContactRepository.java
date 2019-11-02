@@ -13,13 +13,14 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
 	List<Contact> findByUserId(Long idUser);
 
-	List<Contact> findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(String name, String breed);
+	List<Contact> findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseOrPetRecommendedToStartingWithIgnoreCase(
+			String name, String breed, String petRecommendedTo);
 
 	List<Contact> findByActiveTrueOrderByCreationDateDesc();
 
-	List<Contact> findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseOrPetRecommendedToStartingWithIgnoreCase(Long userId, String name,
-			String breed, String petRecommendedTo);
-	
+	List<Contact> findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(Long userId, String name,
+			String breed);
+
 	@Transactional
 	void deleteByUserId(Long idUser);
 
