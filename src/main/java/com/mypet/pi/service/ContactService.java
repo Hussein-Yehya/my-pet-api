@@ -54,17 +54,15 @@ public class ContactService {
 
 	public List<Contact> getContactByName(String name) {
 		String breed = name;
-		String petRecommendedTo = name;
-		return this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseOrPetRecommendedTo(
-				name, breed, petRecommendedTo.toUpperCase());
+
+		return this.contactRepository.findByNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(name, breed);
 	}
 
 	public List<Contact> getContactByNameAndUserId(String name, Long userId) {
 		String breed = name;
-		String petRecommendedTo = name;
-		return this.contactRepository
-				.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCaseOrPetRecommendedTo(userId, name,
-						breed, petRecommendedTo.toUpperCase());
+
+		return this.contactRepository.findByUserIdAndNameStartingWithIgnoreCaseOrBreedStartingWithIgnoreCase(userId,
+				name, breed);
 	}
 
 	public boolean pauseContact(Long id) {
